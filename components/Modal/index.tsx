@@ -1,8 +1,8 @@
 import styles from "../../styles/Modal.module.css";
 import PropTypes from "prop-types";
-import { FaTimes } from "react-icons/fa";
 import { useEffect, useState, FC, MouseEvent } from "react";
 import ReactDOM from "react-dom";
+import { BeakerIcon } from "@heroicons/react/solid";
 
 type Props = {
 	show: boolean;
@@ -25,7 +25,7 @@ const Modal: FC<Props> = ({ show, onClose, children, title }) => {
 			<div className={styles.modal}>
 				<div className={styles.header}>
 					<button type="button" onClick={handleClose}>
-						<FaTimes />
+						<BeakerIcon />
 					</button>
 				</div>
 				{title && <h2 className={styles.title}>{title}</h2>}

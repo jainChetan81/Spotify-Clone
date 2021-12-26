@@ -1,4 +1,4 @@
 import Layout from "./Layout";
+import Sidebar from "./Sidebar";
 import Modal from "./Modal/index";
-import Sidebar from "./SIdebar";
 export { Layout, Modal, Sidebar };

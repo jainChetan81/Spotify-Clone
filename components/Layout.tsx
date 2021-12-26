@@ -1,6 +1,6 @@
-/* eslint-disable no-restricted-globals */
 import Head from "next/head";
 import PropTypes from "prop-types";
+import { Sidebar } from ".";
 import { LayoutType } from "../types";
 
 function Home({ title, keywords, description, children }: LayoutType) {
@@ -15,14 +15,18 @@ function Home({ title, keywords, description, children }: LayoutType) {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 				<link rel="manifest" href="manifest.json" />
 			</Head>
-			<main className="container mx-auto">{children}</main>
+
+			<main className="bg-black h-screen overflow-hidden">
+				<Sidebar />
+				{children}
+			</main>
 		</>
 	);
 }
 Home.defaultProps = {
 	title: "Spotify Clone",
 	description: "A Clone of Spotify",
-	keywords: "[NextJs, Spotify, Tailwind]",
+	keywords: "[NextJs, Spotify, Tailwind, NextAuth, Recoil]",
 };
 Home.propTypes = {
 	title: PropTypes.string,
