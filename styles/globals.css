@@ -10,6 +10,7 @@ html {
 }
 * {
 	box-sizing: border-box;
+	font-family: "Raleway", sans-serif;
 }
 
 html {
@@ -28,7 +29,6 @@ html.dark {
 	--card-box-shadow: rgba(3, 8, 20, 0.1) 0px 0.15rem 0.5rem, rgba(2, 8, 20, 0.1) 0px 0.075rem 0.175rem;
 }
 body {
-	font-family: "Raleway", sans-serif;
 	font-weight: 400;
 	background: var(--background-color);
 	color: var(--main-color);

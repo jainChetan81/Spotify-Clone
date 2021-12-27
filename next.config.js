@@ -10,9 +10,7 @@ module.exports = withPWA({
 	},
 	reactStrictMode: true,
 	images: {
-		domains: ["res.imagekit.io", "links.papareact.com"],
-		// loader: "default",//default, imgix, cloudinary, akamai, custom
-		// path: "/",
+		domains: ["res.imagekit.io", "links.papareact.com", "doodleipsum.com", "platform-lookaside.fbsbx.com"],
 		minimumCacheTTL: 3600,
 		disableStaticImages: true,
 	},

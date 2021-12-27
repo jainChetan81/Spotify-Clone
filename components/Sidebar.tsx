@@ -4,7 +4,7 @@ import { signOut, useSession } from "next-auth/react";
 const Sidebar = () => {
 	const { data: session, status } = useSession();
 	return (
-		<div className="text-gray-500 p-5 text-sm border-gray-900 border-r text-left">
+		<div className="text-gray-500 p-5 text-sm border-gray-900 border-r text-left overflow-y-scroll scrollbar-hide h-screen">
 			<ul className="space-y-4">
 				<li>
 					<button className="flex items-center space-x-2 hover:text-white" onClick={() => signOut()}>

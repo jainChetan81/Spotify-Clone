@@ -45,6 +45,7 @@ public/sw.js.map
 .vscode
 /.vscode
 .vscode/
+package-lock.json
 
 # production
 /build

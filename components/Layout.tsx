@@ -1,6 +1,6 @@
 import Head from "next/head";
 import PropTypes from "prop-types";
-import { Sidebar } from ".";
+import { Sidebar, Center } from ".";
 import { LayoutType } from "../types";
 
 function Home({ title, keywords, description, children }: LayoutType) {
@@ -16,10 +16,13 @@ function Home({ title, keywords, description, children }: LayoutType) {
 				<link rel="manifest" href="manifest.json" />
 			</Head>
 
-			<main className="bg-black h-screen overflow-hidden">
-				<Sidebar />
-				{children}
-			</main>
+			<div className="bg-black h-screen overflow-hidden">
+				<main className="flex">
+					<Sidebar />
+					<Center />
+					{children}
+				</main>
+			</div>
 		</>
 	);
 }
