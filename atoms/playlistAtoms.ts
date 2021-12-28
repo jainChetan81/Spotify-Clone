@@ -1,5 +1,5 @@
 import { atom } from "recoil";
-import { SinglePlaylistResponse } from "../types";
+import type { SinglePlaylistResponse } from "../types";
 
 export const playlistIdState = atom<string>({
 	key: "playlistIdState",

@@ -1,5 +1,5 @@
 import { HeartIcon, HomeIcon, LibraryIcon, PlusCircleIcon, RssIcon, SearchIcon } from "@heroicons/react/outline";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { playlistIdState } from "../atoms/playlistAtoms";
@@ -22,12 +22,6 @@ const Sidebar = () => {
 	return (
 		<div className="text-gray-500 p-5 border-gray-900 border-r text-left overflow-y-scroll scrollbar-hide h-screen min-w-[200px] lg:text-sm text-xs sm:max-[12rem] lg:max-w-[15rem] hidden md:inline-flex">
 			<ul className="space-y-4">
-				<li>
-					<button className="flex items-center space-x-2 hover:text-white" onClick={() => signOut()}>
-						<HomeIcon className="h-5 w-5" />
-						<p>Logout</p>
-					</button>
-				</li>
 				<li>
 					<button className="flex items-center space-x-2 hover:text-white">
 						<HomeIcon className="h-5 w-5" />

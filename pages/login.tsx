@@ -5,6 +5,7 @@ import { getProviders, signIn } from "next-auth/react";
 import type { ClientSafeProvider, LiteralUnion } from "next-auth/react";
 import { FC } from "react";
 import { ChevronDoubleRightIcon } from "@heroicons/react/outline";
+import NetworkDetector from "../hoc/NetworkDetector";
 
 type Props = {
 	providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider>;
@@ -29,7 +30,7 @@ const Login: FC<Props> = ({ providers }) => {
 	);
 };
 
-export default Login;
+export default NetworkDetector(Login);
 
 export async function getServerSideProps(context: GetServerSideProps) {
 	const providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null =

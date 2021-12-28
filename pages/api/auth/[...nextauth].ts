@@ -24,7 +24,7 @@ async function refreshAccessToken(token: JWT_X) {
 			refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
 		};
 	} catch (error) {
-		console.error(error);
+		console.error("Access Token Expired :", error);
 
 		return {
 			...token,

@@ -1,12 +1,12 @@
 import { ChevronDownIcon } from "@heroicons/react/outline";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { shuffle } from "lodash";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { playlistState, playlistIdState } from "../atoms/playlistAtoms";
 import { useSpotify } from "../hooks";
-import { SinglePlaylistResponse } from "../types";
+import { Response, SinglePlaylistResponse } from "../types";
 import { Songs } from ".";
 
 const colors: string[] = [
@@ -19,7 +19,7 @@ const colors: string[] = [
 	"from-purple-500",
 ];
 
-const Center = () => {
+const Center = (): JSX.Element => {
 	const { data: session, status } = useSession();
 	const { image, name } = session?.user || {};
 	const currentPlaylistId = useRecoilValue<string>(playlistIdState);
@@ -33,7 +33,7 @@ const Center = () => {
 	useEffect(() => {
 		spotifyApi
 			.getPlaylist(currentPlaylistId)
-			.then((res) => {
+			.then((res: Response<SinglePlaylistResponse>) => {
 				setPlaylist(res.body);
 			})
 			.catch((e: Error) => {
@@ -43,7 +43,9 @@ const Center = () => {
 	return (
 		<div className="flex-grow text-white h-screen overflow-y-scroll">
 			<header className="absolute top-5 right-8">
-				<div className="flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2">
+				<div
+					className="flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2"
+					onClick={() => signOut()}>
 					<Image
 						src={
 							image || "https://doodleipsum.com/40x40/avatar?bg=D96363&i=6c1d81eb757d911acaef34ead7dfd392"
