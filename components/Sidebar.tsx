@@ -1,17 +1,21 @@
 import { HeartIcon, HomeIcon, LibraryIcon, PlusCircleIcon, RssIcon, SearchIcon, XIcon } from "@heroicons/react/outline";
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { playlistIdState } from "../atoms/playlistAtoms";
 import { useSpotify } from "../hooks";
 import type { PlaylistObjectSimplified } from "../types";
 
-const Sidebar = () => {
+type Props = {
+	showSidebar: boolean;
+	setShowSidebar: (showSidebar: boolean) => void;
+};
+
+const Sidebar: FC<Props> = ({ showSidebar, setShowSidebar }) => {
 	const spotifyAPI = useSpotify();
 	const { data: session, status } = useSession();
 	const [playlist, setPlaylist] = useState<PlaylistObjectSimplified[]>([]);
 	const [currentPlaylistId, setCurrentPlaylistId] = useRecoilState<string>(playlistIdState);
-	const [showSidebar, setShowSidebar] = useState(false);
 
 	useEffect(() => {
 		if (spotifyAPI.getAccessToken()) {

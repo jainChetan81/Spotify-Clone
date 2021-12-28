@@ -8,6 +8,7 @@ import { playlistState, playlistIdState } from "../atoms/playlistAtoms";
 import { useSpotify } from "../hooks";
 import { Response, SinglePlaylistResponse } from "../types";
 import { Songs } from ".";
+import type SpotifyWebApi from "spotify-web-api-node";
 
 const colors: string[] = [
 	"from-indigo-500",
@@ -25,7 +26,7 @@ const Center = (): JSX.Element => {
 	const currentPlaylistId = useRecoilValue<string>(playlistIdState);
 	const [playList, setPlaylist] = useRecoilState<SinglePlaylistResponse>(playlistState);
 	const [color, setColor] = useState<string>("");
-	const spotifyApi = useSpotify();
+	const spotifyApi: SpotifyWebApi = useSpotify();
 	useEffect(() => {
 		setColor(shuffle(colors)[0]);
 	}, [currentPlaylistId]);

@@ -1,14 +1,19 @@
 import type { NextPage } from "next";
 import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
-import { Center, Layout, Player } from "../components";
+import { useState } from "react";
+import { Center, Layout, Player, Sidebar } from "../components";
 import NetworkDetector from "../hoc/NetworkDetector";
 
 const Home: NextPage = () => {
+	const [showSidebar, setShowSidebar] = useState<boolean>(false);
 	return (
 		<Layout title="Spotify | Home">
-			<Center />
-			<Player />
+			<Sidebar showSidebar={showSidebar} setShowSidebar={setShowSidebar} />
+			<main onClick={() => setShowSidebar(false)}>
+				<Center />
+				<Player />
+			</main>
 		</Layout>
 	);
 };

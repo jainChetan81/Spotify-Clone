@@ -16,10 +16,7 @@ function Home({ title, keywords, description, children }: LayoutType) {
 				<link rel="manifest" href="manifest.json" />
 			</Head>
 
-			<div className="bg-black h-screen overflow-hidden">
-				<Sidebar />
-				<main className="">{children}</main>
-			</div>
+			<div className="bg-black h-screen overflow-hidden">{children}</div>
 		</>
 	);
 }
