@@ -10,7 +10,15 @@ module.exports = withPWA({
 	},
 	reactStrictMode: true,
 	images: {
-		domains: ["res.imagekit.io", "links.papareact.com", "doodleipsum.com", "platform-lookaside.fbsbx.com"],
+		domains: [
+			"res.imagekit.io",
+			"links.papareact.com",
+			"doodleipsum.com",
+			"platform-lookaside.fbsbx.com",
+			"ik.imagekit.io",
+			"i.scdn.co",
+			"mosaic.scdn.co",
+		],
 		minimumCacheTTL: 3600,
 		disableStaticImages: true,
 	},

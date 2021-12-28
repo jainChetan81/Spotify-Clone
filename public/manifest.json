@@ -1,14 +1,14 @@
 {
 	"theme_color": "#ffffff",
-	"background_color": "#131313",
+	"background_color": "#000000",
 	"display": "standalone",
 	"scope": "/",
 	"lang": "en-US",
 	"orientation": "any",
 	"start_url": "/",
-	"name": "Pokedox App",
-	"short_name": "pokedox",
-	"description": "A gallery of various Pokemons",
+	"name": "Spotify Clone",
+	"short_name": "Spotify",
+	"description": "A clone of Spotify",
 	"screenshots": [
 		{
 			"src": "https://ik.imagekit.io/aqaseg5nkl6/pokeball.png?tr=w-512W,h-512W,f-png",

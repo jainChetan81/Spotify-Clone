@@ -1,4 +1,4 @@
-import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
+import { GetServerSideProps } from "next";
 import { BuiltInProviderType } from "next-auth/providers";
 import Image from "next/image";
 import { getProviders, signIn } from "next-auth/react";
@@ -7,7 +7,7 @@ import { FC } from "react";
 import { ChevronDoubleRightIcon } from "@heroicons/react/outline";
 
 type Props = {
-	providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null;
+	providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider>;
 };
 
 const Login: FC<Props> = ({ providers }) => {
