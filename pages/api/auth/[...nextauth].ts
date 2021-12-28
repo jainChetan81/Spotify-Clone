@@ -1,13 +1,19 @@
-import NextAuth from "next-auth";
+import NextAuth, { Session } from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import spotifyAPI, { LOGIN_URL } from "../../../lib/spotify";
-import type { Session } from "next-auth";
-import type { JWT_INTERFACE, RefreshAccessTokenResponse, Response, SESSION_INTERFACE } from "../../../types";
+import type {
+	JWT_INTERFACE,
+	JWT_X,
+	RefreshAccessTokenResponse,
+	Response,
+	SESSION_INTERFACE,
+	TOKEN_INTERFACE,
+} from "../../../types";
 
-async function refreshAccessToken(token: any) {
+async function refreshAccessToken(token: JWT_X) {
 	try {
-		spotifyAPI.setAccessToken(token.accessToken);
-		spotifyAPI.setAccessToken(token.refreshToken);
+		spotifyAPI.setAccessToken(token.accessToken!);
+		spotifyAPI.setAccessToken(token.refreshToken!);
 
 		const { body: refreshedToken }: Response<RefreshAccessTokenResponse> = await spotifyAPI.refreshAccessToken();
 
@@ -30,8 +36,8 @@ async function refreshAccessToken(token: any) {
 export default NextAuth({
 	providers: [
 		SpotifyProvider({
-			clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
-			clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
+			clientId: process.env.NEXT_PUBLIC_CLIENT_ID || "",
+			clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET || "",
 			authorization: LOGIN_URL,
 		}),
 	],
@@ -40,7 +46,7 @@ export default NextAuth({
 		signIn: "/login",
 	},
 	callbacks: {
-		async jwt({ token, account, user }: JWT_INTERFACE) {
+		async jwt({ token, account, user }: JWT_INTERFACE): Promise<TOKEN_INTERFACE> {
 			// Initial Sign In
 			if (account && user) {
 				return {
@@ -48,12 +54,12 @@ export default NextAuth({
 					accessToken: account.access_token,
 					refreshToken: account.refresh_token,
 					username: account.providerAccountId,
-					accessTokenExpires: account.expires_at * 1000, //converting milliseconds to seconds
+					accessTokenExpires: account.expires_at ? account.expires_at * 1000 : 3600, //converting milliseconds to seconds
 				};
 			}
 
 			// Return previous token if the access token hasn't expired yet
-			if (Date.now() < token.accessTokenExpires) {
+			if (Date.now() < token.accessTokenExpires!) {
 				console.info("Token is valid ...");
 				return token;
 			}
@@ -64,9 +70,9 @@ export default NextAuth({
 		},
 
 		async session({ session, token }: SESSION_INTERFACE): Promise<Session> {
-			session.user.accessToken = token.accessToken;
-			session.user.refreshToken = token.refreshToken;
-			session.user.username = token.username;
+			session.userAccessToken = token.accessToken;
+			session.userRefreshToken = token.refreshToken;
+			session.userName = token.username;
 
 			return session;
 		},

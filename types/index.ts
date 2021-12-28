@@ -1,4 +1,4 @@
-import type { Session, User } from "next-auth";
+import type { Account, Session, User } from "next-auth";
 import type { JWT } from "next-auth/jwt";
 export type LayoutType = {
 	title: string;
@@ -6,8 +6,22 @@ export type LayoutType = {
 	description?: string;
 	children?: any;
 };
-export type JWT_INTERFACE = { token: JWT; user?: User; account?: any; isNewUser?: boolean };
-export type SESSION_INTERFACE = { session: Session; user?: User; token: JWT };
+export type JWT_INTERFACE = { token: JWT_X; user?: User; account?: Account; isNewUser?: boolean };
+export interface JWT_X extends JWT {
+	accessToken?: string;
+	refreshToken?: string;
+	username?: string;
+	accessTokenExpires?: number;
+}
+export interface TOKEN_INTERFACE extends JWT {
+	// token: JWT;
+	accessToken?: string;
+	refreshToken?: string;
+	username?: string;
+	accessTokenExpires?: number;
+}
+
+export type SESSION_INTERFACE = { session: Session; user?: User; token: JWT_X };
 export interface Response<T> {
 	body: T;
 	headers: Record<string, string>;
