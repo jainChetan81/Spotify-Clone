@@ -1,6 +1,6 @@
 import Head from "next/head";
 import PropTypes from "prop-types";
-import { Sidebar, Center } from ".";
+import { Sidebar } from ".";
 import { LayoutType } from "../types";
 
 function Home({ title, keywords, description, children }: LayoutType) {
@@ -17,11 +17,8 @@ function Home({ title, keywords, description, children }: LayoutType) {
 			</Head>
 
 			<div className="bg-black h-screen overflow-hidden">
-				<main className="flex">
-					<Sidebar />
-					<Center />
-					{children}
-				</main>
+				<Sidebar />
+				<main className="">{children}</main>
 			</div>
 		</>
 	);

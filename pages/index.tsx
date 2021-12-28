@@ -1,11 +1,16 @@
 import type { NextPage } from "next";
 import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
-import { Layout } from "../components";
+import { Center, Layout, Player } from "../components";
 import NetworkDetector from "../hoc/NetworkDetector";
 
 const Home: NextPage = () => {
-	return <Layout title="Home"></Layout>;
+	return (
+		<Layout title="Spotify | Home">
+			<Center />
+			<Player />
+		</Layout>
+	);
 };
 
 export default NetworkDetector(Home);

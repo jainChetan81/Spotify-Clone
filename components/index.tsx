@@ -4,4 +4,5 @@ import Center from "./Center";
 import Modal from "./Modal/index";
 import Songs from "./Songs";
 import SongItem from "./SongItem";
-export { Layout, Modal, Sidebar, Center, Songs, SongItem };
+import Player from "./Player";
+export { Layout, Modal, Sidebar, Center, Songs, SongItem, Player };
