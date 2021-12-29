@@ -6,7 +6,6 @@ import { NextResponse } from "next/server";
 export async function middleware(req: NextApiRequest, res: NextApiResponse) {
 	//token will exist if user is logged
 	const token: JWT | null = await getToken({ req, secret: process.env.JWT_SECRET || "" });
-	// const { pathname } = req.nextUrl;
 	const pathname: string | undefined = req.url;
 
 	//allow the requests is for the login page if
