@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { shuffle } from "lodash";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { playlistState, playlistIdState } from "../atoms/playlistAtoms";
@@ -9,6 +9,7 @@ import { useSpotify } from "../hooks";
 import { Response, SinglePlaylistResponse } from "../types";
 import { Songs } from ".";
 import type SpotifyWebApi from "spotify-web-api-node";
+import { isLoadingHOC } from "../hoc";
 
 const colors: string[] = [
 	"from-indigo-500",
@@ -20,8 +21,11 @@ const colors: string[] = [
 	"from-purple-500",
 ];
 
-const Center = (): JSX.Element => {
-	const { data: session, status } = useSession();
+type Props = {
+	setLoading: (loading: boolean) => void;
+};
+const Center: FC<Props> = ({ setLoading }): JSX.Element => {
+	const { data: session } = useSession();
 	const { image, name } = session?.user || {};
 	const currentPlaylistId = useRecoilValue<string>(playlistIdState);
 	const [playList, setPlaylist] = useRecoilState<SinglePlaylistResponse>(playlistState);
@@ -32,15 +36,17 @@ const Center = (): JSX.Element => {
 	}, [currentPlaylistId]);
 
 	useEffect(() => {
+		setLoading(true);
 		spotifyApi
 			.getPlaylist(currentPlaylistId)
 			.then((res: Response<SinglePlaylistResponse>) => {
 				setPlaylist(res.body);
+				setLoading(false);
 			})
 			.catch((e: Error) => {
 				console.error("Could not get playlist", e);
 			});
-	}, [spotifyApi, currentPlaylistId, setPlaylist]);
+	}, [spotifyApi, currentPlaylistId]);
 	return (
 		<div className="flex-grow text-white h-screen overflow-y-scroll">
 			<header className="absolute top-5 right-8">
@@ -79,5 +85,4 @@ const Center = (): JSX.Element => {
 		</div>
 	);
 };
-
-export default Center;
+export default isLoadingHOC(Center, "Please wait as we load your data.");
