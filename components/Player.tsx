@@ -45,6 +45,7 @@ const Player = () => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [volume]);
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	const debouncedAdjustVolume = useCallback(
 		debounce((volume) => {
 			spotifyApi.setVolume(volume);
