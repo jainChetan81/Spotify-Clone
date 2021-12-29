@@ -3,8 +3,6 @@ import type { JWT } from "next-auth/jwt";
 
 export type SessionType =
 	| { data: Session; status: "authenticated" }
-	| { data: null; status: "loading" }
-	| { data: Session; status: "authenticated" }
 	| { data: null; status: "loading" | "unauthenticated" };
 export type LayoutType = {
 	title: string;

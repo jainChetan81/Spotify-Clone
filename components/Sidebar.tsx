@@ -47,45 +47,45 @@ const Sidebar: FC<Props> = ({ showSidebar, setShowSidebar }) => {
 				</svg>
 			)}
 			<div
-				className={`text-gray-500 p-5 pt-14 fixed top-0 left-0  bg-black z-10 border-gray-900 border-r text-left overflow-y-scroll scrollbar-hide h-screen min-w-[230px] lg:text-sm text-xs max-w-[15rem] ease-in-out duration-300 ${
+				className={`text-gray-500 p-5 pt-14 fixed top-0 left-0  bg-black z-10 border-gray-900 border-r text-left overflow-y-scroll scrollbar-hide h-screen min-w-[230px] lg:text-sm text-xs pb-36 max-w-[15rem] ease-in-out duration-300 ${
 					showSidebar ? "translate-x-0 " : "translate-x-[-100%]"
 				}`}>
 				<ul className="space-y-4">
 					<hr className="border-t-[0.1px] border-gray-900" />
 					<li>
 						<button className="flex items-center space-x-2 hover:text-white">
-							<HomeIcon className="h-5 w-5" />
+							<HomeIcon className="button" />
 							<p>Home</p>
 						</button>
 					</li>
 					<li>
 						<button className="flex items-center space-x-2 hover:text-white">
-							<SearchIcon className="h-5 w-5" />
+							<SearchIcon className="button" />
 							<p>Search</p>
 						</button>
 					</li>
 					<li>
 						<button className="flex items-center space-x-2 hover:text-white">
-							<LibraryIcon className="h-5 w-5" />
+							<LibraryIcon className="button" />
 							<p>Your Libraries</p>
 						</button>
 					</li>
 					<hr className="border-t-[0.1px] border-gray-900" />
 					<li>
 						<button className="flex items-center space-x-2 hover:text-white">
-							<PlusCircleIcon className="h-5 w-5" />
+							<PlusCircleIcon className="button" />
 							<p>Create Playlist</p>
 						</button>
 					</li>
 					<li>
 						<button className="flex items-center space-x-2 hover:text-white">
-							<HeartIcon className="h-5 w-5" />
+							<HeartIcon className="button" />
 							<p>Your Libraries</p>
 						</button>
 					</li>
 					<li>
 						<button className="flex items-center space-x-2 hover:text-white">
-							<RssIcon className="h-5 w-5" />
+							<RssIcon className="button" />
 							<p>Your Episodes</p>
 						</button>
 					</li>

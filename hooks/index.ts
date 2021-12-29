@@ -1,2 +1,3 @@
 import useSpotify from "./useSpotify";
-export { useSpotify };
+import useSongInfo from "./useSongInfo";
+export { useSpotify, useSongInfo };

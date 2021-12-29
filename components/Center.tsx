@@ -63,7 +63,7 @@ const Center: FC<Props> = ({ setLoading }): JSX.Element => {
 						className="rounded-full w-10 h-10"
 					/>
 					<h2>{name}</h2>
-					<ChevronDownIcon className="h-5 w-5" />
+					<ChevronDownIcon className="button" />
 				</div>
 			</header>
 			<section className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-80 text-white p-8 `}>

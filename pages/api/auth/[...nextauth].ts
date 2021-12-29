@@ -13,10 +13,9 @@ import type {
 async function refreshAccessToken(token: JWT_X) {
 	try {
 		spotifyAPI.setAccessToken(token.accessToken!);
-		spotifyAPI.setAccessToken(token.refreshToken!);
+		spotifyAPI.setRefreshToken(token.refreshToken!);
 
 		const { body: refreshedToken }: Response<RefreshAccessTokenResponse> = await spotifyAPI.refreshAccessToken();
-
 		return {
 			...token,
 			accessToken: refreshedToken.access_token,
