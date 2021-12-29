@@ -1,6 +1,5 @@
-import { GetServerSideProps } from "next";
 import { BuiltInProviderType } from "next-auth/providers";
-import Image from "next/image";
+// import Image from "next/image";
 import { getProviders, signIn } from "next-auth/react";
 import type { ClientSafeProvider, LiteralUnion } from "next-auth/react";
 import { FC } from "react";
@@ -17,7 +16,7 @@ const Login: FC<Props> = ({ providers }) => {
 		<Layout title="Spotify | Login">
 			<div className="flex flex-col min-h-screen items-center place-center w-full justify-center">
 				<figure className="w-52 mb-5">
-					<Image
+					<img
 						src="https://ik.imagekit.io/clhowstalgz/spotify.png?tr=w-208,h-208,c-maintain_ratio"
 						alt="Spotify logo for sign in"
 						height={208}
@@ -42,7 +41,7 @@ const Login: FC<Props> = ({ providers }) => {
 
 export default NetworkDetector(Login);
 
-export async function getServerSideProps(context: GetServerSideProps) {
+export async function getServerSideProps() {
 	const providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null =
 		await getProviders();
 	return {
