@@ -1,4 +1,4 @@
-import NextAuth, { Session } from "next-auth";
+import NextAuth from "next-auth";
 import SpotifyProvider from "next-auth/providers/spotify";
 import spotifyAPI, { LOGIN_URL } from "../../../lib/spotify";
 import type {
@@ -6,6 +6,7 @@ import type {
 	JWT_X,
 	RefreshAccessTokenResponse,
 	Response,
+	SESSION_EXT,
 	SESSION_INTERFACE,
 	TOKEN_INTERFACE,
 } from "../../../types";
@@ -68,7 +69,7 @@ export default NextAuth({
 			return await refreshAccessToken(token);
 		},
 
-		async session({ session, token }: SESSION_INTERFACE): Promise<Session> {
+		async session({ session, token }: SESSION_INTERFACE): Promise<SESSION_EXT> {
 			session.userAccessToken = token.accessToken;
 			session.userRefreshToken = token.refreshToken;
 			session.userName = token.username;

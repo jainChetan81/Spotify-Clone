@@ -1,17 +1,17 @@
 import { signIn, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import spotifyAPI from "../lib/spotify";
-import type { SessionType } from "../types";
+import type { SessionType, SESSION_EXT } from "../types";
 
 const useSpotify = () => {
-	const { data: session }: SessionType = useSession();
+	const session: SESSION_EXT = useSession().data as SESSION_EXT;
 	useEffect(() => {
 		if (session) {
 			//if refresh access token attempt fails, direct user to login
 			if (session.error === "RefreshAccessTokenError") {
 				signIn();
 			}
-			spotifyAPI.setAccessToken(session.userAccessToken);
+			spotifyAPI.setAccessToken(session.userAccessToken!);
 		}
 	}, [session]);
 	return spotifyAPI;

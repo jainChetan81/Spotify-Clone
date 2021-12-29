@@ -1,8 +1,12 @@
 import type { Account, Session, User } from "next-auth";
 import type { JWT } from "next-auth/jwt";
 
+export interface SESSION_EXT extends Session {
+	userAccessToken?: string;
+}
+
 export type SessionType =
-	| { data: Session; status: "authenticated" }
+	| { data: SESSION_EXT; status: "authenticated" }
 	| { data: null; status: "loading" | "unauthenticated" };
 export type LayoutType = {
 	title: string;
@@ -25,7 +29,7 @@ export interface TOKEN_INTERFACE extends JWT {
 	accessTokenExpires?: number;
 }
 
-export type SESSION_INTERFACE = { session: Session; user?: User; token: JWT_X };
+export type SESSION_INTERFACE = { session: SESSION_EXT; user?: User; token: JWT_X };
 export interface Response<T> {
 	body: T;
 	headers: Record<string, string>;
