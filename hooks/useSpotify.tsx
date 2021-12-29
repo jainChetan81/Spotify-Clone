@@ -1,14 +1,10 @@
-import { Session } from "next-auth";
 import { signIn, useSession } from "next-auth/react";
 import { useEffect } from "react";
 import spotifyAPI from "../lib/spotify";
-type Props =
-	| { data: Session; status: "authenticated" }
-	| { data: null; status: "loading" }
-	| { data: Session; status: "authenticated" }
-	| { data: null; status: "loading" | "unauthenticated" };
+import type { SessionType } from "../types";
+
 const useSpotify = () => {
-	const { data: session }: Props = useSession();
+	const { data: session }: SessionType = useSession();
 	useEffect(() => {
 		if (session) {
 			//if refresh access token attempt fails, direct user to login

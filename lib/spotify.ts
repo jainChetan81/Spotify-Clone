@@ -25,7 +25,7 @@ const queryParamString: URLSearchParams = new URLSearchParams(params);
 
 const LOGIN_URL: string = "https://accounts.spotify.com/authorize?" + queryParamString.toString();
 
-const spotifyAPI = new SpotifyWebApi({
+const spotifyAPI: SpotifyWebApi = new SpotifyWebApi({
 	clientId: process.env.NEXT_PUBLIC_CLIENT_ID,
 	clientSecret: process.env.NEXT_PUBLIC_CLIENT_SECRET,
 });
