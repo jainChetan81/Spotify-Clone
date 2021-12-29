@@ -5,8 +5,8 @@ import { getProviders, signIn } from "next-auth/react";
 import type { ClientSafeProvider, LiteralUnion } from "next-auth/react";
 import { FC } from "react";
 import { ChevronDoubleRightIcon } from "@heroicons/react/outline";
-import NetworkDetector from "../hoc/NetworkDetector";
 import { Layout } from "../components";
+import { NetworkDetector } from "../hoc";
 
 type Props = {
 	providers: Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider>;
@@ -18,7 +18,7 @@ const Login: FC<Props> = ({ providers }) => {
 			<div className="flex flex-col min-h-screen items-center place-center w-full justify-center">
 				<figure className="w-52 mb-5">
 					<Image
-						src="https://links.papareact.com/9xl"
+						src="https://ik.imagekit.io/clhowstalgz/spotify.png?tr=w-208,h-208,c-maintain_ratio"
 						alt="Spotify logo for sign in"
 						height={208}
 						width={208}

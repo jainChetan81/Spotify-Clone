@@ -3,7 +3,7 @@ import { Session } from "next-auth";
 import { getSession } from "next-auth/react";
 import { useState } from "react";
 import { Center, Layout, Player, Sidebar } from "../components";
-import NetworkDetector from "../hoc/NetworkDetector";
+import { NetworkDetector } from "../hoc";
 
 const Home: NextPage = () => {
 	const [showSidebar, setShowSidebar] = useState<boolean>(false);
