@@ -22,6 +22,14 @@ export default NetworkDetector(Home);
 
 export async function getServerSideProps(context: any) {
 	const session: Session | null = await getSession(context);
+	if (!session) {
+		return {
+			redirect: {
+				destination: "/login",
+				permanent: false,
+			},
+		};
+	}
 	return {
 		props: { session },
 	};
