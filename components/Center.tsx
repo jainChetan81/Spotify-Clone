@@ -46,6 +46,7 @@ const Center: FC<Props> = ({ setLoading }): JSX.Element => {
 			.catch((e: Error) => {
 				console.error("Could not get playlist", e);
 			});
+	// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [spotifyApi, currentPlaylistId]);
 	return (
 		<div className="flex-grow text-white h-screen overflow-y-scroll">

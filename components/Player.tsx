@@ -1,14 +1,22 @@
 import { useSession } from "next-auth/react";
-import { useEffect, useState } from "react";
-import { useRecoilState} from "recoil";
+import { useCallback, useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 import type SpotifyWebApi from "spotify-web-api-node";
 import { playlistState } from "../atoms/playlistAtoms";
 import { useSongInfo, useSpotify } from "../hooks";
 import { Response, SinglePlaylistResponse } from "../types";
 import Image from "next/image";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
-import { PauseIcon, PlayIcon, ReplyIcon, SwitchHorizontalIcon } from "@heroicons/react/outline";
+import {
+	PauseIcon,
+	PlayIcon,
+	ReplyIcon,
+	SwitchHorizontalIcon,
+	VolumeUpIcon as VolumeDownIcon,
+} from "@heroicons/react/outline";
+import { VolumeUpIcon } from "@heroicons/react/solid";
 import { FastForwardIcon, RewindIcon } from "@heroicons/react/solid";
+import { debounce } from "lodash";
 
 const Player = () => {
 	const spotifyApi: SpotifyWebApi = useSpotify();
@@ -31,27 +39,42 @@ const Player = () => {
 		});
 	};
 
-	const fetchCurrentSong = () => {
-		if (!songInfo) {
-			spotifyApi.getMyCurrentPlayingTrack().then((data: Response<SpotifyApi.CurrentlyPlayingResponse>) => {
-				setCurrentTrackId(data.body?.item?.id || null);
-				spotifyApi.getMyCurrentPlaybackState().then((data: Response<SpotifyApi.CurrentPlaybackResponse>) => {
-					setIsPlaying(data.body?.is_playing || false);
-					setVolume(data.body?.device?.volume_percent || 50);
-				});
-			});
+	useEffect(() => {
+		if (volume > 0 && volume < 100) {
+			debouncedAdjustVolume(volume);
 		}
-	};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [volume]);
+	const debouncedAdjustVolume = useCallback(
+		debounce((volume) => {
+			spotifyApi.setVolume(volume);
+		}, 500),
+		[]
+	);
 
 	useEffect(() => {
+		const fetchCurrentSong = () => {
+			if (!songInfo) {
+				spotifyApi.getMyCurrentPlayingTrack().then((data: Response<SpotifyApi.CurrentlyPlayingResponse>) => {
+					setCurrentTrackId(data.body?.item?.id || null);
+					spotifyApi
+						.getMyCurrentPlaybackState()
+						.then((data: Response<SpotifyApi.CurrentPlaybackResponse>) => {
+							setIsPlaying(data.body?.is_playing || false);
+							setVolume(data.body?.device?.volume_percent || 50);
+						});
+				});
+			}
+		};
 		if (spotifyApi.getAccessToken() && !currentTrackId) {
 			fetchCurrentSong();
 		}
-	}, [currentTrackId, spotifyApi, session]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [currentTrackId, spotifyApi, session, songInfo]);
 	return (
 		<div className="sticky bottom-0 z-30 text-white ">
 			{songInfo && (
-				<div className="h-24 bg-gradient-to-b from-black to-gray-900 text-white grid grid-cols-3 text-xs md:text-base px-2 md:px-8">
+				<div className="h-24 bg-gradient-to-b from-black to-gray-900 text-white grid md:grid-cols-3 grid-cols-2 text-xs md:text-base px-2 md:px-8">
 					<div className="flex items-center space-x-4">
 						<figure className="hidden md:inline h-10 w-10">
 							<Image
@@ -80,6 +103,20 @@ const Player = () => {
 						)}
 						<FastForwardIcon onClick={() => spotifyApi.skipToNext()} className="button" />
 						<ReplyIcon className="button" />
+					</div>
+					<div className="items-center hidden md:flex space-x-3 md:space-x-4 justify-end py-5">
+						<VolumeDownIcon onClick={() => volume > 0 && setVolume(volume - 10)} className="button" />
+						<input
+							type="range"
+							name="volume"
+							id="volume"
+							aria-label="range of volume 1-100"
+							value={volume}
+							min={0}
+							max={100}
+							onChange={(e) => setVolume(Number(e.target.value))}
+						/>
+						<VolumeUpIcon onClick={() => volume < 100 && setVolume(volume + 10)} className="button" />
 					</div>
 				</div>
 			)}
