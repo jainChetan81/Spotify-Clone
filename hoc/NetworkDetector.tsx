@@ -31,7 +31,7 @@ export default function (ComposedComponent: any) {
 							});
 						})
 						.catch(() => this.setState({ isDisconnected: true }));
-				}, 2000);
+				}, 5000);
 				return;
 			}
 

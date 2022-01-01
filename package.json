@@ -3,7 +3,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"build": "next build",
+		"build": "yarn cache clean --force && next build",
 		"start": "next start",
 		"lint": "next lint"
 	},

@@ -15,6 +15,7 @@ export async function middleware(req: NextApiRequest, res: NextApiResponse) {
 		return NextResponse.next();
 	}
 	if (!token && pathname !== "/login") {
+		console.log("redirecting to login", pathname);
 		return NextResponse.redirect("/login");
 	}
 }
