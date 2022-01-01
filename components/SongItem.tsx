@@ -1,5 +1,5 @@
 import { FC } from "react";
-// import Image from "next/image";
+import Image from "next/image";
 import type { PlaylistTrackObject } from "../types";
 import { millisToMinutesAndSeconds } from "../lib/time";
 import { useRecoilState } from "recoil";
@@ -33,7 +33,7 @@ const SongItem: FC<Props> = ({ song, order }) => {
 			onClick={playSong}>
 			<div className="flex items-center space-x-4">
 				<p className="mr-4">{order + 1}</p>
-				<img
+				<Image
 					src={song.track?.album.images[0].url || "https://ik.imagekit.io/clhowstalgz/songs.jpg?tr=w-40,h-40"}
 					alt={song.track?.name}
 					height={40}

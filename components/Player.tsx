@@ -5,7 +5,7 @@ import type SpotifyWebApi from "spotify-web-api-node";
 import { playlistState } from "../atoms/playlistAtoms";
 import { useSongInfo, useSpotify } from "../hooks";
 import { Response, SinglePlaylistResponse } from "../types";
-// import Image from "next/image";
+import Image from "next/image";
 import { currentTrackIdState, isPlayingState } from "../atoms/songAtom";
 import {
 	PauseIcon,
@@ -78,7 +78,7 @@ const Player = () => {
 				<div className="h-24 bg-gradient-to-b from-black to-gray-900 text-white grid md:grid-cols-3 grid-cols-2 text-xs md:text-base px-2 md:px-8">
 					<div className="flex items-center space-x-4">
 						<figure className="hidden md:inline h-10 w-10">
-							<img
+							<Image
 								src={
 									songInfo?.album?.images?.[0].url ||
 									"https://ik.imagekit.io/clhowstalgz/songs.jpg?tr=w-40,h-40"

@@ -1,6 +1,6 @@
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { signOut, useSession } from "next-auth/react";
-// import Image from "next/image";
+import Image from "next/image";
 import { FC, useEffect, useState } from "react";
 import { shuffle } from "lodash";
 import { useRecoilState, useRecoilValue } from "recoil";
@@ -54,7 +54,7 @@ const Center: FC<Props> = ({ setLoading }): JSX.Element => {
 				<div
 					className="flex items-center bg-black space-x-3 opacity-90 hover:opacity-80 cursor-pointer rounded-full p-1 pr-2"
 					onClick={() => signOut()}>
-					<img
+					<Image
 						src={
 							image || "https://doodleipsum.com/40x40/avatar?bg=D96363&i=6c1d81eb757d911acaef34ead7dfd392"
 						}
@@ -68,7 +68,7 @@ const Center: FC<Props> = ({ setLoading }): JSX.Element => {
 				</div>
 			</header>
 			<section className={`flex items-end space-x-7 bg-gradient-to-b to-black ${color} h-80 text-white p-8 `}>
-				<img
+				<Image
 					src={playList?.images?.[0]?.url || "https://ik.imagekit.io/clhowstalgz/songs.jpg?tr=w-176,h-176"}
 					alt={playList.name}
 					className="h-44 w-44 shadow-2xl rounded-xl"
