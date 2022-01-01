@@ -50,7 +50,7 @@ const Player = () => {
 		debounce((volume) => {
 			spotifyApi.setVolume(volume);
 		}, 500),
-		[]
+		[volume]
 	);
 
 	useEffect(() => {

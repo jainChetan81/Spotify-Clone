@@ -10,9 +10,6 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Raleway:wght@400&display=swap");
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
 	font-family: "Raleway", sans-serif;
 }
 /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
@@ -29,6 +26,12 @@ html {
 	line-height: 1.15; /* 1 */
 	-webkit-text-size-adjust: 100%; /* 2 */
 	scroll-behavior: smooth;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 /* Sections

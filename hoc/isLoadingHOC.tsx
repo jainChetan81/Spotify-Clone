@@ -7,7 +7,7 @@ const isLoadingHOC = (WrappedComponent: any, loadingMessage: string) => {
 		};
 		return (
 			<>
-				{isLoading && <div className="text-white text-center">{loadingMessage}</div>}
+				{isLoading && <div className="bg-black mx-auto text-white block text-center">{loadingMessage}</div>}
 				<WrappedComponent {...props} setLoading={setLoadingState} />
 			</>
 		);

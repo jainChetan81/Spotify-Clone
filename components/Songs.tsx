@@ -6,7 +6,7 @@ import type { PlaylistTrackObject, SinglePlaylistResponse } from "../types";
 const Songs = () => {
 	const playList = useRecoilValue<SinglePlaylistResponse>(playlistState);
 	return (
-		<ul className="px-8 flex flex-col space-y-1">
+		<ul className="px-2 md:px-8 flex flex-col space-y-1">
 			{playList?.tracks?.items.map((item: PlaylistTrackObject, i: number) => (
 				<SongItem key={item.track?.id + i} song={item} order={i} />
 			))}
