@@ -4,7 +4,7 @@ A Spotify clone where user can login though their own spotify account and listen
 
 ## API Reference
 
-#### POST login usig spotify api
+#### POST login using spotify api
 
 ```http
   POST https://accounts.spotify.com/authorize?" + queryParamString.toString()
@@ -57,12 +57,12 @@ To build this project with static pages without edge functions where Server Side
 
 **Client:** React, Recoil , next-pwa, tailwindcss, typescript, react-icons, next-auth
 
-**Recoil**- for State managment\
+**Recoil**- for State management\
 **next-pwa** - for generating service worker\
 **tailwindcss** - for utility based css framework\
-**typescript** - type based language developed on top of javscript\
+**typescript** - type based language developed on top of javascript\
 **react-icons** - for fontawesome icons to use in react\
-**nex-auth** - for authentication in nextjs backend uing spotify web api\
+**nex-auth** - for authentication in nextjs backend using spotify web api\
 
 ## Project Structure
 
@@ -79,7 +79,7 @@ To build this project with static pages without edge functions where Server Side
 ## Lessons Learned
 
 -   I started this project to learn about Nextjs 12 features which are its middleware function and backend technology
--   Nextjs Server Side generation is used for reauthenticating whethere user is logged in or not
+-   Nextjs Server Side generation is used for reauthenticating whether user is logged in or not
 
 ## Contributing
 
@@ -106,13 +106,3 @@ I am a Full Stack Web Developer with over two years of experience in various tec
 ## Screenshots
 
 ![App Screenshot](./screenshots/main.png)
-
-## Running Tests
-
-To run tests with unit testing and end to end testing and finally a report, run the following command
-
-```bash
-  npm run test:jest
-  npm run test:cypress
-  test:mocha-report
-```
