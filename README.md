@@ -1,34 +1,118 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Spotify Clone
 
-## Getting Started
+A Spotify clone where user can login though their own spotify account and listen to music through their preferred devices
 
-First, run the development server:
+## API Reference
 
-```bash
-npm run dev
-# or
-yarn dev
+#### POST login usig spotify api
+
+```http
+  POST https://accounts.spotify.com/authorize?" + queryParamString.toString()
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Authors
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+-   [@jainChetan](https://thechetanjain.in)
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## Color Reference
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+| Color            | Hex                                                              |
+| ---------------- | ---------------------------------------------------------------- |
+| Background Color | ![#000000](https://via.placeholder.com/10/000000?text=+) #000000 |
+| Text Color       | ![#ffffff](https://via.placeholder.com/10/ffffff?text=+) #ffffff |
 
-## Learn More
+## Install
 
-To learn more about Next.js, take a look at the following resources:
+To install this project with npm or yarn.
+Go to project directory
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```bash
+  git clone https://github.com/jainChetan81/Spotify-Clone.git
+  cd Spotify Clone
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+then
 
-## Deploy on Vercel
+```bash
+  npm install || yarn install
+  npm run dev || yarn dev
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To build this project with npm or yarn.
+Go to project directory
+
+```bash
+  npm run build || yarn build
+```
+
+To build this project with static pages without edge functions where Server Side Rendering won't work
+
+```bash
+  npm run build && npm run export || yarn dev && yarn export
+```
+
+## Tech Stack
+
+**Client:** React, Recoil , next-pwa, tailwindcss, typescript, react-icons, next-auth
+
+**Recoil**- for State managment\
+**next-pwa** - for generating service worker\
+**tailwindcss** - for utility based css framework\
+**typescript** - type based language developed on top of javscript\
+**react-icons** - for fontawesome icons to use in react\
+**nex-auth** - for authentication in nextjs backend uing spotify web api\
+
+## Project Structure
+
+    --- ## atoms
+    --- ## public
+    --- ## component
+    --- ## hoc
+    --- ## hooks
+    --- ## lib
+    --- ## styles
+    --- ## pages
+    --- ## types
+
+## Lessons Learned
+
+-   I started this project to learn about Nextjs 12 features which are its middleware function and backend technology
+-   Nextjs Server Side generation is used for reauthenticating whethere user is logged in or not
+
+## Contributing
+
+Contributions are always welcome!
+
+See project structure
+
+Please adhere to the Project Structure
+
+## Feedback
+
+If you have any feedback, please reach out to me at jain.cj.chetan@gmail.com
+
+## 🚀 About Me
+
+I am a Full Stack Web Developer with over two years of experience in various tech stacks.
+
+## 🔗 Links
+
+[![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://thechetanjain.in/)
+[![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://thechetanjain.in/linkedin/)
+[![twitter](https://img.shields.io/badge/twitter-1DA1F2?style=for-the-badge&logo=twitter&logoColor=white)](https://thechetanjain.in/github)
+
+## Screenshots
+
+![App Screenshot](./screenshots/main.png)
+
+## Running Tests
+
+To run tests with unit testing and end to end testing and finally a report, run the following command
+
+```bash
+  npm run test:jest
+  npm run test:cypress
+  test:mocha-report
+```
